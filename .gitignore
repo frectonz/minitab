@@ -1,0 +1,4 @@
+.vscode
+elm-stuff
+dist/js/main.js
+src/ClientId.elm
