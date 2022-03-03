@@ -35,3 +35,8 @@ You can get a client id from [unsplash](https://unsplash.com/developers).
 
 This is also an extension you can load it to your browser and it will override the default new tab page.
 The manifest file is at `dist/manifest.json`.
+
+## Screenshots
+
+![1](./screenshots/1.png)
+![2](./screenshots/2.png)
