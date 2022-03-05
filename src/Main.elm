@@ -4,9 +4,9 @@ import Browser
 import ClientId exposing (getClientId)
 import Html exposing (Html, a, div, h1, h3, img, p, text)
 import Html.Attributes exposing (href, id, src, target)
+import Html.Events exposing (on)
 import Http
-import Json.Decode exposing (Decoder, Error(..), field, map4, maybe, string)
-import Maybe exposing (withDefault)
+import Json.Decode exposing (Decoder, Error(..), field, map4, maybe, string, succeed)
 import Task
 import Time exposing (Month(..), Weekday(..))
 
@@ -75,6 +75,8 @@ type Msg
     = GotPhoto (Result Http.Error Photo)
     | AdjustTimeZone Time.Zone
     | Tick Time.Posix
+    | ImageLoadFailed
+    | ImageLoading
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -92,6 +94,12 @@ update msg model =
             ( { model | time = TimeData model.time.zone newTime }
             , Cmd.none
             )
+
+        ImageLoadFailed ->
+            ( { model | loadedPhoto = Failure }, Cmd.none )
+
+        ImageLoading ->
+            ( { model | loadedPhoto = Loading }, Cmd.none )
 
 
 gotPhoto : Model -> Result error Photo -> ( Model, Cmd Msg )
@@ -137,10 +145,10 @@ viewImage loadedPhoto =
 
         Success photo ->
             div []
-                [ img [ src photo.url ] []
+                [ img [ src photo.url, on "error" (succeed ImageLoadFailed) ] []
                 , div [ id "moreInfo" ]
                     [ a [ href photo.photographerPortfolio, target "_blank" ] [ text ("Photo by " ++ photo.photographerName) ]
-                    , p [] [ text (withDefault "" photo.location) ]
+                    , p [] [ text (Maybe.withDefault "" photo.location) ]
                     ]
                 ]
 
@@ -177,12 +185,12 @@ getRandomPhoto : Cmd Msg
 getRandomPhoto =
     Http.get
         { url = "https://api.unsplash.com/photos/random?orientation=landscape&client_id=" ++ getClientId
-        , expect = Http.expectJson GotPhoto imageDecoder
+        , expect = Http.expectJson GotPhoto imageDataDecoder
         }
 
 
-imageDecoder : Decoder Photo
-imageDecoder =
+imageDataDecoder : Decoder Photo
+imageDataDecoder =
     map4 Photo
         (field "urls" (field "raw" string))
         (field "user" (field "name" string))
