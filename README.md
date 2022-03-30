@@ -13,8 +13,17 @@ Sample screenshots of the website
 
 ## Running the website
 
-1. Install packages using (yarn/npm/pnpm).
-2. Use your package manger to run the `start` script.
+Install packages using.
+
+```bash
+pnpm install
+```
+
+Run the `start` script.
+
+```bash
+pnpm start
+```
 
 ## Requirements
 
