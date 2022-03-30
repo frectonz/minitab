@@ -1,7 +1,6 @@
 module Main exposing (..)
 
 import Browser
-import ClientId exposing (getClientId)
 import Html exposing (Html, a, div, h1, h3, img, p, text)
 import Html.Attributes exposing (href, id, src, target)
 import Html.Events exposing (on)
@@ -15,10 +14,10 @@ import Time exposing (Month(..), Weekday(..))
 -- MAIN
 
 
-main : Program () Model Msg
+main : Program String Model Msg
 main =
     Browser.element
-        { init = \_ -> init
+        { init = init
         , update = update
         , subscriptions = subscriptions
         , view = view
@@ -32,6 +31,7 @@ main =
 type alias Model =
     { time : TimeData
     , loadedPhoto : LoadedPhoto
+    , clientId : String
     }
 
 
@@ -55,13 +55,14 @@ type alias Photo =
     }
 
 
-init : ( Model, Cmd Msg )
-init =
+init : String -> ( Model, Cmd Msg )
+init clientId =
     ( { time =
             { zone = Time.utc
             , time = Time.millisToPosix 0
             }
       , loadedPhoto = Loading
+      , clientId = clientId
       }
     , adjustTimeZone
     )
@@ -87,7 +88,7 @@ update msg model =
 
         AdjustTimeZone newZone ->
             ( { model | time = TimeData newZone model.time.time }
-            , getRandomPhoto
+            , getRandomPhoto model.clientId
             )
 
         Tick newTime ->
@@ -181,10 +182,10 @@ viewTime time =
 -- HTTP
 
 
-getRandomPhoto : Cmd Msg
-getRandomPhoto =
+getRandomPhoto : String -> Cmd Msg
+getRandomPhoto clientId =
     Http.get
-        { url = "https://api.unsplash.com/photos/random?orientation=landscape&client_id=" ++ getClientId
+        { url = "https://api.unsplash.com/photos/random?orientation=landscape&client_id=" ++ clientId
         , expect = Http.expectJson GotPhoto imageDataDecoder
         }
 
