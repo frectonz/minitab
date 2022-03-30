@@ -3,3 +3,6 @@ elm-stuff
 dist/js/main.js
 src/ClientId.elm
 web-ext-artifacts
+node_modules
+dist
+.parcel-cache

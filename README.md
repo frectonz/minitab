@@ -1,6 +1,7 @@
 # MiniTab
 
 ![logo](./dist/img/minitab.png)
+A beautiful new tab website that shows time and a random image from unsplash.
 
 ## Scripts
 

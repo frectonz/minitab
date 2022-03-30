@@ -1,6 +1,6 @@
 @font-face {
   font-family: segoeuil;
-  src: url(/fonts/segoeuil.ttf);
+  src: url(../static/fonts/segoeuil.ttf);
 }
 
 * {
