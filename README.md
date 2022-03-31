@@ -4,6 +4,8 @@
 
 A beautiful new tab website that shows time and a random image from unsplash.
 
+## [Live demo](https://mini-tab.netlify.com)
+
 ## Screenshots
 
 Sample screenshots of the website
