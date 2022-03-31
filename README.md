@@ -1,6 +1,6 @@
 # MiniTab
 
-![logo](./static/img/minitab.svg)
+![logo](./static/minitab.svg)
 
 A beautiful new tab website that shows time and a random image from unsplash.
 
