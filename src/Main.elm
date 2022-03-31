@@ -139,10 +139,10 @@ viewImage : LoadedPhoto -> Html Msg
 viewImage loadedPhoto =
     case loadedPhoto of
         Loading ->
-            img [ src "/img/loading.jpg" ] []
+            img [ src "./img/loading.jpg" ] []
 
         Failure ->
-            img [ src "/img/error.jpg" ] []
+            img [ src "./img/error.jpg" ] []
 
         Success photo ->
             div []

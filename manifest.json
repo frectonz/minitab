@@ -5,8 +5,8 @@
   "version": "1.0",
   "description": "A new tab extension which gets random photos from unsplash.",
   "icons": {
-    "48": "img/minitab.svg",
-    "96": "img/minitab.svg"
+    "48": "static/img/minitab.svg",
+    "96": "static/img/minitab.svg"
   },
   "chrome_url_overrides": {
     "newtab": "index.html"

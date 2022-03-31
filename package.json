@@ -10,6 +10,7 @@
   "author": "Fraol Lemecha <fraol0912@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@parcel/config-default": "^2.4.0",
     "@parcel/transformer-elm": "2.4.0",
     "elm": "^0.19.1-5",
     "parcel": "^2.4.0",
