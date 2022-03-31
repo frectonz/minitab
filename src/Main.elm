@@ -139,17 +139,22 @@ viewImage : LoadedPhoto -> Html Msg
 viewImage loadedPhoto =
     case loadedPhoto of
         Loading ->
-            img [ src "./img/loading.jpg" ] []
+            img [ src "/loading.jpg" ] []
 
         Failure ->
-            img [ src "./img/error.jpg" ] []
+            img [ src "/error.jpg" ] []
 
         Success photo ->
             div []
                 [ img [ src photo.url, on "error" (succeed ImageLoadFailed) ] []
                 , div [ id "moreInfo" ]
                     [ a [ href photo.photographerPortfolio, target "_blank" ] [ text ("Photo by " ++ photo.photographerName) ]
-                    , p [] [ text (Maybe.withDefault "" photo.location) ]
+                    , p []
+                        [ photo.location
+                            |> Maybe.map (\loc -> "At " ++ loc)
+                            |> Maybe.withDefault ""
+                            |> text
+                        ]
                     ]
                 ]
 

@@ -1,14 +1,11 @@
-@font-face {
-  font-family: segoeuil;
-  src: url(../static/fonts/segoeuil.ttf);
-}
+@import url("https://fonts.googleapis.com/css2?family=Zilla+Slab+Highlight&display=swap");
 
 * {
   margin: 0;
   padding: 0;
   overflow: hidden;
   box-sizing: border-box;
-  font-family: segoeuil;
+  font-family: "Zilla Slab Highlight", serif;
 }
 
 img {
@@ -40,13 +37,15 @@ img {
   position: absolute;
   top: 2%;
   right: 2%;
-  padding: 0.5rem;
   color: white;
-  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#moreInfo p {
+  font-size: 1.6rem;
 }
 
 #moreInfo a {
   color: white;
-  font-size: 1rem;
+  font-size: 1.5rem;
   text-decoration: none;
 }
