@@ -8,8 +8,7 @@ A beautiful new tab website that shows time and a random image from unsplash.
 
 Sample screenshots of the website
 
-![1](./screenshots/1.png)
-![2](./screenshots/2.png)
+![screenshot](./screenshot.png)
 
 ## Running the website
 
